@@ -1,6 +1,5 @@
 package rasptemp.login;
 
-import rasptemp.utils.MD5Util;
 import java.util.List;
 import javax.persistence.EntityManager;
 
