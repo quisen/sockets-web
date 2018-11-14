@@ -25,12 +25,12 @@
             <div class="animated finite bounceInLeft slow"> 
                 <h:graphicImage value="#{resource['images/rasp.png']}" width="130px"/>
             </div>
-                        <div class="animated finite bounceInRight slow"> 
+            <div class="animated finite bounceInRight slow"> 
                 <h:graphicImage value="#{resource['images/server2.png']}" width="130px"/>
             </div>
         </hgroup>
 
-        <div align="center" class="animated finite bounceInUp slow">
+        <div align="center" class="animated finite fadeIn slow delay-1s">
             <h:form id="login-form" class="login-form">
                 <f:passThroughAttribute name="autocomplete" value="off"/>
                 <p:growl id="message" showDetail="false" life="5000"/>
@@ -54,10 +54,11 @@
             </h:form>
         </div>
 
-        
-         <footer><a href="http://www.utfpr.edu.br/curitiba" target="_blank"><img src="resources/images/utfpr.png"/></a>
-         </footer>
-        
+        <div align="center" class="animated finite fadeIn slow delay-1s">
+            <footer><a href="http://www.utfpr.edu.br/curitiba" target="_blank"><img src="resources/images/utfpr.png"/></a>
+            </footer>
+        </div>
+
         <script src="resources/js/login.js"></script>
     </h:body>
 </html>
