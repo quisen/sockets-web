@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "htth://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <h:head>
+        <link href="resources/css/login.css" rel="stylesheet"></link>
+        <link href="resources/css/animate.css" rel="stylesheet"></link>
+        <title>Login - Raspberry Temperature Monitor</title>
+    </h:head>
+
+    <h:outputScript name="locale-primefaces.js" library="js" />
+
+    <h:body>
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+        <p:dialog style="border: 0px; background: transparent" widgetVar="statusDialog" modal="false" draggable="false" closable="false" resizable="false" showHeader="false">
+            <h:graphicImage value="#{resource['images/loading.gif']}" />
+        </p:dialog>
+        <hgroup>
+            <div class="animated finite bounceInLeft slow"> 
+                <h:graphicImage value="#{resource['images/rasp.png']}" width="130px"/>
+            </div>
+                        <div class="animated finite bounceInRight slow"> 
+                <h:graphicImage value="#{resource['images/server2.png']}" width="130px"/>
+            </div>
+        </hgroup>
+
+        <div align="center" class="animated finite bounceInUp slow">
+            <h:form id="login-form" class="login-form">
+                <f:passThroughAttribute name="autocomplete" value="off"/>
+                <p:growl id="message" showDetail="false" life="5000"/>
+                <div align="center" class="animated finite fadeIn slow delay-1s">
+                    <div class="group">
+                        <h:inputText value="#{loginManager.login}" class="input" id="username" pt:placeholder="Usuário"/>
+                        <span class="highlight"></span><span class="bar"></span>
+                    </div>
+                </div>
+                <div align="center" class="animated finite fadeIn slow delay-1s">
+                    <div class="group">
+                        <h:inputSecret value="#{loginManager.senha}" id="senha" pt:placeholder="Senha"/>
+                        <span class="highlight"></span><span class="bar"></span>
+                    </div>
+                </div>
+                <div align="center" class="animated finite fadeIn slow delay-1s">
+                    <p:commandButton id="button" class="button buttonLogin" value="Entrar" action="#{loginManager.doLogin}" update="message"/>
+                    <!--<p:commandButton id="recsenha" class="button buttonGray" value="Recuperar Senha" update=":reset-form:recupera-senha-dialog" oncomplete="PF('recupera_senha_widget').show()"/>
+                    -->
+                </div>
+            </h:form>
+        </div>
+
+        
+         <footer><a href="http://www.utfpr.edu.br/curitiba" target="_blank"><img src="resources/images/utfpr.png"/></a>
+         </footer>
+        
+        <script src="resources/js/login.js"></script>
+    </h:body>
+</html>

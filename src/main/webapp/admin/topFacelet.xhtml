@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <link href="../resources/css/cssLayout.css" rel="stylesheet"></link>
+    </h:head>
+
+    <body style="width: 100% !important">
+
+        <h:form>  
+            <p:growl id="messages"/>
+
+            <p:menubar>
+                <p:menuitem style="padding-left: 8px; padding-top: 4px; padding-bottom: 4px; max-width: 200px !important;" value="Início" outcome="index.xhtml" ajax="false" ></p:menuitem>
+
+                <f:facet name="options">
+                    <p:panelGrid columns="2" style="width:100%" styleClass="ui-panelgrid-blank"
+                                 columnClasses="ui-grid-col-6,ui-grid-col-6" 
+                                 layout="grid">
+
+                        <div align="right">
+                            <f:ajax>
+                                <p:commandButton type="button" style="padding-top: 20px" class="button" actionListener="#{loginManager.doLogout()}" icon="fa fa-sign-out" />
+                            </f:ajax>
+                        </div>
+
+                    </p:panelGrid>
+                </f:facet>
+            </p:menubar>
+
+        </h:form>
+
+    </body>
+</html>
