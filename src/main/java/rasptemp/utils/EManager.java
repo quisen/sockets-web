@@ -5,6 +5,7 @@ import rasptemp.login.UsuarioAccessor;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import rasptemp.login.LogAccessor;
 
 public class EManager implements java.io.Serializable {
 
@@ -17,6 +18,7 @@ public class EManager implements java.io.Serializable {
 
     private final LoginAccessor loginAccessor;
     private final UsuarioAccessor usuarioAccessor;
+    private final LogAccessor logAccessor;
 
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("RASPTEMP_PU");
 
@@ -24,6 +26,7 @@ public class EManager implements java.io.Serializable {
         this.em = Persistence.createEntityManagerFactory("RASPTEMP_PU").createEntityManager();
         this.loginAccessor = new LoginAccessor(this.em, this.operationLock);
         this.usuarioAccessor = new UsuarioAccessor(this.em, this.operationLock);
+        this.logAccessor = new LogAccessor(this.em, this.operationLock);
     }
 
     public static EManager getInstance() {
@@ -43,5 +46,9 @@ public class EManager implements java.io.Serializable {
 
     public UsuarioAccessor getUsuarioAccessor() {
         return usuarioAccessor;
+    }
+
+    public LogAccessor getLogAccessor() {
+        return logAccessor;
     }
 }
