@@ -26,7 +26,7 @@ public class LogManager implements Serializable {
 
     private void createAnimatedModels() {
         animatedModel1 = initLinearModel();
-        animatedModel1.setTitle("Line Chart");
+        animatedModel1.setTitle("Temperature and Humidity");
         animatedModel1.setAnimate(true);
         animatedModel1.setLegendPosition("se");
         Axis yAxis = animatedModel1.getAxis(AxisType.Y);
@@ -46,7 +46,7 @@ public class LogManager implements Serializable {
         series1.set(5, 8);
 
         LineChartSeries series2 = new LineChartSeries();
-        series2.setLabel("Humdity");
+        series2.setLabel("Humidity");
 
         series2.set(1, 6);
         series2.set(2, 3);
