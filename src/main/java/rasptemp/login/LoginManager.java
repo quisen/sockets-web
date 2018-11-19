@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.util.List;
@@ -20,10 +19,7 @@ public class LoginManager implements Serializable {
     private static Usuario usuarioAtivo = new Usuario();
 
     private static boolean loggedIn;
-
-    @ManagedProperty(value = "#{navigationBean}")
-    private NavigationBean navigationBean;
-
+    
     public void doLogin() throws IOException {
         List<Usuario> users = EManager.getInstance().getLoginAccessor().getUsuariosByLoginSenha(login, senha);
         // Login sucesso
@@ -42,6 +38,7 @@ public class LoginManager implements Serializable {
     public void doLogout() throws IOException {
         loggedIn = false;
         this.senha = "";
+        this.login = "";
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         context.redirect(context.getRequestContextPath() + "/login.xhtml");
     }
@@ -74,10 +71,6 @@ public class LoginManager implements Serializable {
 
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
-    }
-
-    public void setNavigationBean(NavigationBean navigationBean) {
-        this.navigationBean = navigationBean;
     }
 
     public static Usuario getUsuarioAtivo() {

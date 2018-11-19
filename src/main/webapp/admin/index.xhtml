@@ -5,22 +5,28 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
+
     <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                     template="./template.xhtml">
 
         <ui:define name="content">
             <br/>
-            <div align="center" style="font-size: medium; font-family: Helvetica">
-                <p:chart type="line" model="#{logManager.animatedModel}" style="width:400px;" />
-<!--                <p:chart type="metergauge" model="#{logManager.gaugeModel}" />-->
-            </div>
+            <h:form>
+                <div align="center" style="font-size: medium; font-family: Helvetica">
+                    <p:chart id="grafico" type="line" model="#{logManager.graficoLinha}" style="width:70vw; height: 40vh" />
+                </div>
+                <br/>
+                <hr/>
+                <div align="center" style="font-size: medium; font-family: Helvetica">
+                    <p:chart id="gauge" type="metergauge" model="#{logManager.meterGaugeModel}" style="width:400px; height:250px;"/>
+                </div>
+
+                <p:poll interval="2" listener="#{logManager.updateDbData()}" update="grafico gauge" />
+
+            </h:form>
             <br/>
 
         </ui:define>
 
-
     </ui:composition>
-
-
-
 </html> 

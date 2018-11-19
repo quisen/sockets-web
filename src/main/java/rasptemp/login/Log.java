@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rasptemp.login;
 
 import java.io.Serializable;
@@ -18,12 +13,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author rodrigo
+ * @author cnmoro
  */
 @Entity
 @Table(name = "log")
@@ -32,6 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Log.findAll", query = "SELECT l FROM Log l")
     , @NamedQuery(name = "Log.findById", query = "SELECT l FROM Log l WHERE l.id = :id")
     , @NamedQuery(name = "Log.findByTemp", query = "SELECT l FROM Log l WHERE l.temp = :temp")
+    , @NamedQuery(name = "Log.findByTempRecent", query = "SELECT l from Log l ORDER BY l.data DESC")
     , @NamedQuery(name = "Log.findByData", query = "SELECT l FROM Log l WHERE l.data = :data")})
 public class Log implements Serializable {
 
@@ -42,11 +37,12 @@ public class Log implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "temp")
     private double temp;
     @Basic(optional = false)
-    @NotNull
+    @Column(name = "umid")
+    private double umid;
+    @Basic(optional = false)
     @Column(name = "data")
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
@@ -58,9 +54,16 @@ public class Log implements Serializable {
         this.id = id;
     }
 
-    public Log(Integer id, double temp, Date data) {
+    public Log(Integer id, double temp, double umid, Date data) {
         this.id = id;
         this.temp = temp;
+        this.umid = umid;
+        this.data = data;
+    }
+
+    public Log(double temp, double umid, Date data) {
+        this.temp = temp;
+        this.umid = umid;
         this.data = data;
     }
 
@@ -78,6 +81,14 @@ public class Log implements Serializable {
 
     public void setTemp(double temp) {
         this.temp = temp;
+    }
+
+    public double getUmid() {
+        return umid;
+    }
+
+    public void setUmid(double umid) {
+        this.umid = umid;
     }
 
     public Date getData() {
@@ -110,7 +121,7 @@ public class Log implements Serializable {
 
     @Override
     public String toString() {
-        return "rasptemp.login.Log[ id=" + id + " ]";
+        return "multithreadedsockets.Log[ id=" + id + " ]";
     }
 
 }
