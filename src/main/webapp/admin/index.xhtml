@@ -16,12 +16,8 @@
                     <p:chart id="grafico" type="line" model="#{logManager.graficoLinha}" style="width:70vw; height: 40vh" />
                 </div>
                 <br/>
-                <hr/>
-                <div align="center" style="font-size: medium; font-family: Helvetica">
-                    <p:chart id="gauge" type="metergauge" model="#{logManager.meterGaugeModel}" style="width:400px; height:250px;"/>
-                </div>
 
-                <p:poll interval="2" listener="#{logManager.updateDbData()}" update="grafico gauge" />
+                <p:poll interval="2" listener="#{logManager.updateDbData()}" update="grafico" />
 
             </h:form>
             <br/>
